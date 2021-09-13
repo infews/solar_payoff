@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# From https://jer-k.github.io/add-active-record-rake-tasks-to-gem
+
+require 'rails'
+
+module GemWithDatabase
+  class Engine < Rails::Engine
+    config.generators do |g|
+      g.orm :active_record
+    end
+  end
+end
+
+Rails.application = GemWithDatabase::Engine
+
+require 'rails/commands'

@@ -7,6 +7,8 @@
 /pkg/
 /spec/reports/
 /tmp/
+/vendor/
+/db/*.sqlite3
 
 
 # rspec failure tracking

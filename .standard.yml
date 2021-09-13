@@ -1,0 +1,3 @@
+ignore:
+  - support/active_record_rake_tasks.rb
+  - support/db_connection.rb
