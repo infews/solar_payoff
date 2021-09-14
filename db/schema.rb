@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_175931) do
+ActiveRecord::Schema.define(version: 2021_09_14_224438) do
 
   create_table "pge_hours", force: :cascade do |t|
     t.time "start"
     t.integer "dWh"
     t.integer "cost"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sunpower_hours", force: :cascade do |t|
+    t.time "start"
+    t.integer "dWh"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

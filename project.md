@@ -8,7 +8,7 @@
     - [x] has a cost
     - [x] has a table
     - [x] can read/write to DB
-  - [ ] PgeUsageParser 
+  - [ ] PgeCSV 
     - [x] can take a real file
     - [x] will calculate the usage and the cost
     - [x] will build an array of PgeHours
@@ -20,7 +20,7 @@
     - [ ] has a kWh for that time
     - [ ] has a table
     - [ ] can read/write to DB
-  - [ ] SunPowerParser
+  - [ ] SunPowerXLS
     - [ ] can take a real file
     - [ ] will skip over headers
   - [ ] Script that will load the data file and put it in the DB
