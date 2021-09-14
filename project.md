@@ -2,17 +2,16 @@
 
 - [x] setup: can run tests
 - [ ] I can parse a PG&E billing CSV and see the data in the DB (console is fine)
-  - [ ] PgeHour
-    - [ ] has a date/time for start
-    - [ ] has a number of Wh used
-    - [ ] has a cost
-    - [ ] has a table
-    - [ ] can read/write to DB
+  - [x] PgeHour
+    - [x] has a date/time for start
+    - [x] has a number of Wh used
+    - [x] has a cost
+    - [x] has a table
+    - [x] can read/write to DB
   - [ ] PgeUsageParser 
-    - [ ] can take a real file
-    - [ ] will skip over headers
-    - [ ] will calculate the usage and the cost
-    - [ ] will build an array of PgeHours
+    - [x] can take a real file
+    - [x] will calculate the usage and the cost
+    - [x] will build an array of PgeHours
   - [ ] Script that will load the data file and put it in the DB
 
 - [ ] I can parse a SunPower production CSV and see the data in the DB

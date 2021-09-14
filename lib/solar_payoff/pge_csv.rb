@@ -3,28 +3,43 @@ require "csv"
 module SolarPayoff
   class PgeCsv
     TIME_PATTERN = /^(?<hour>\d\d):(?<min>\d\d)/
+
     def initialize(filename)
       @filename = filename
     end
 
     def parse
-      table = CSV.parse(File.read(@filename), headers: true)
-      intervals = table.map do |row|
-        {
-          time: time_from(row["DATE"], row["START TIME"]),
-          usage: row["USAGE"].to_f,
-          cost: cost_from(row["COST"])
-        }
-      end
-      intervals.group_by { |i| i[:time] }
+      get_intervals
+        .group_by { |interval| interval[:time] }
         .each_with_object([]) do |(time, intervals), hours|
-        usage = (intervals.sum { |i| i[:usage] } * 100).to_i
-        cost = (intervals.sum { |i| i[:cost] } * 100).to_i
-        hours << PgeHour.new(start: time, dWh: usage, cost: cost)
+        usage = (sum(intervals, :usage) * 100).to_i
+        cost = (sum(intervals, :cost) * 100).to_i
+        hours << PgeHour.new(start: time, dWh: usage, cost: cost) # TODO: This should be a find_or_create_by_time
       end
     end
 
     private
+
+    def sum(intervals, sym)
+      intervals.sum { |interval| interval[sym] }
+    end
+
+    # The PG&E CSV file has some account stuff at the beginning, then has the CSV headers.
+    # So this method goes line-by-line through the file until it gets to the first data line
+    # in the CSV table, *then* it pulls the data into an Array of Hashes of the important data
+    def get_intervals
+      intervals = []
+      CSV.foreach(@filename).each do |line|
+        next unless /^Electric usage/.match?(line.first.to_s)
+
+        intervals << {
+          time: time_from(line[1], line[2]),
+          usage: line[4].to_f,
+          cost: cost_from(line[6])
+        }
+      end
+      intervals
+    end
 
     def cost_from(cost_s)
       cost_s.sub("$", "").to_f
