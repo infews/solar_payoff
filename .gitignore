@@ -10,6 +10,8 @@
 /vendor/
 /db/*.sqlite3
 
+# gems should not ship with a lock file
+Gemfile.lock
 
 # rspec failure tracking
 .rspec_status

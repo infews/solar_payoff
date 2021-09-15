@@ -29,15 +29,16 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
+  spec.add_dependency "bundler"
   spec.add_dependency "thor"
   spec.add_dependency "activerecord", "~> 6"
   spec.add_dependency "sqlite3"
+  spec.add_dependency "roo", "~> 2.8.0"
+  spec.add_dependency "rake"
+  spec.add_dependency "railties"
 
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "standard"
-  spec.add_development_dependency "railties"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
