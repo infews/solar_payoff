@@ -28,8 +28,7 @@ module SolarPayoff
     # So this method goes line-by-line through the file until it gets to the first data line
     # in the CSV table, *then* it pulls the data into an Array of Hashes of the important data
     def get_intervals
-      intervals = []
-      CSV.foreach(@filename).each do |line|
+      CSV.foreach(@filename).each_with_object([]) do |line, intervals|
         next unless /^Electric usage/.match?(line.first.to_s)
 
         intervals << {
@@ -38,7 +37,6 @@ module SolarPayoff
           cost: cost_from(line[6])
         }
       end
-      intervals
     end
 
     def cost_from(cost_s)

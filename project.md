@@ -8,21 +8,21 @@
     - [x] has a cost
     - [x] has a table
     - [x] can read/write to DB
-  - [ ] PgeCSV 
+  - [x] PgeCSV 
     - [x] can take a real file
     - [x] will calculate the usage and the cost
     - [x] will build an array of PgeHours
   - [ ] Script that will load the data file and put it in the DB
 
 - [ ] I can parse a SunPower production CSV and see the data in the DB
-  - [ ] SunpowerHour
-    - [ ] has a date/time for start
-    - [ ] has a kWh for that time
-    - [ ] has a table
-    - [ ] can read/write to DB
-  - [ ] SunPowerXLS
-    - [ ] can take a real file
-    - [ ] will skip over headers
+  - [x] SunpowerHour
+    - [x] has a date/time for start
+    - [x] has a kWh for that time
+    - [x] has a table
+    - [x] can read/write to DB
+  - [x] SunPowerXLS
+    - [x] can take a real file
+    - [x] will skip over headers
   - [ ] Script that will load the data file and put it in the DB
 - [ ] I can see the production interval information that I have today
   - [ ] ProductionInterval
