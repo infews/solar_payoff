@@ -15,6 +15,18 @@ module SolarPayoff
       end
     end
 
+    context "uniqueness of time" do
+      it "allows only one record of this time" do
+        sunpower_hour.save
+        another_hour = SunpowerHour.new({
+          start: Time.new(2021, 8, 5, 0, 0),
+          dWh: 104
+        })
+        expect(another_hour).to_not be_valid
+        expect(another_hour.errors.messages[:start]).to include("has already been taken")
+      end
+    end
+
     context "formatters" do
       context "#kWh" do
         it "returns the power in kilowatt hours" do
